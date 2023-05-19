@@ -57,13 +57,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 EOM
 echo -e "${NC}"
 
-if [ "$(sw_vers -productName)" != "Mac OS X" ]; then
+if [ "$(sw_vers -productName)" != "macOS" ]; then
 	echo "This installer is only compatible with Mail for Mac OS X or macOS."
-	exit 4
-fi
-
-if [ "$(sw_vers -productVersion | awk -F '.' '{print $1}')" != "10" ]; then
-	echo "This installer is only compatible Mac OS X or macOS 10.x."
 	exit 4
 fi
 
@@ -106,7 +101,7 @@ $(perl -MMIME::QuotedPrint -pe '$_=MIME::QuotedPrint::encode($_);' <<< "${RAW_SI
 EndOfFormattedSignature
 fi
 
-V="5"
+V="10"
 MAIL_DIR="${HOME}/Library/Mail/V${V}/MailData/Signatures"
 if [ ! -d "${MAIL_DIR}" ] || [ ! -f "${MAIL_DIR}/AllSignatures.plist" ]; then
 	V="4"
